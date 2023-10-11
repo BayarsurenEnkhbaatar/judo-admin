@@ -27,7 +27,7 @@ const Home = () => {
       </div>
     )
   }else{
-    return <Navigate to='/login'/>
+    return <Navigate to='/'/>
   }
 }
 

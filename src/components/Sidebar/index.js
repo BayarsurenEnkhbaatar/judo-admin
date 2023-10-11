@@ -65,7 +65,7 @@ const admins = useMemo(() => [
   return (
     <div className='bg-white rounded-lg m-2 shadow-lg font-Roboto'>
       <div>
-        <div className='flex items-center p-2 justify-between hover:bg-gray-200 cursor-pointer'>
+        <div className='flex items-center p-2 justify-between hover:bg-gray-200 hover:rounded-t-md cursor-pointer'>
          <Link to="/dashboard" className='flex items-center gap-4'>
             <img className='rounded-lg h-14' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP0ZYfGItYkIMoQEaP7W01j-Fcc08tXoSmDHE8yLlFlw&s'/>
             <div>

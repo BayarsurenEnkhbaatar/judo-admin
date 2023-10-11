@@ -3,6 +3,7 @@ import {Avatar, Button, Input, Spinner} from '@nextui-org/react'
 import {BsFileEarmarkExcel, BsSearch} from 'react-icons/bs'
 import Paginations from '../../../../components/Paginations';
 import AthleteModal from '../../../../components/Modals/Teams/athlete';
+import CompAddModal from '../../../../components/Modals/Comptation/add';
 
 const ComptationList = () => {
   const [load, setLoad] = useState(false);
@@ -16,7 +17,10 @@ const ComptationList = () => {
               <div className='bg-white p-4'>
                 <div className='flex items-center justify-between'>
                   <h1 className='text-lg font-bold'>Хүсэлт явуулсан тамирчид</h1>
-                  <Button size='sm' className='bg-green-600 text-white'><BsFileEarmarkExcel/> Тайлан татах</Button>
+                  <div className='flex gap-2'>
+                    <Button size='sm' className='bg-green-600 text-white'><BsFileEarmarkExcel/>Тайлан татах</Button>
+                    <CompAddModal/>
+                  </div>
                 </div>
                 <div className='flex items-center gap-2'>
                   <Input size='sm' className='border rounded-lg mt-2 focus:border-2' placeholder='Хайлт хийх'/>
