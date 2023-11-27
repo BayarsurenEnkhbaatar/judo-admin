@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {Avatar, Button, Input, Spinner} from '@nextui-org/react'
 import {BsFileEarmarkExcel, BsSearch} from 'react-icons/bs'
 import Paginations from '../../../../components/Paginations';
-import AthleteModal from '../../../../components/Modals/Teams/athlete';
+import AthleteModal from '../../../../components/Modals/Teams/req';
 
 const Admins = () => {
   const [load, setLoad] = useState(false);

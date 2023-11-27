@@ -18,6 +18,7 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
           'back': "url('../public/images/erkhmee.png')",
+          'mandat': "url('../public/images/mandat.png')",
           'back1': "url('https://octagon.mn/assets/new/static/home-header.svg')",
       },
     },

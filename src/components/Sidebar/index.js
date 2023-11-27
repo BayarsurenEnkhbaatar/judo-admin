@@ -46,9 +46,15 @@ const clubs = useMemo(() => [
   {
       icon: HiHome,
       label:'Хүсэлтүүд',
-      activate: pathname === '/dashboard/club-list',
-      href: '/dashboard/club-list'
+      activate: pathname === '/dashboard/club-list/requested',
+      href: '/dashboard/club-list/requested'
   },
+  {
+    icon: HiHome,
+    label:'Баталгаажсан',
+    activate: pathname === '/dashboard/club-list/approved',
+    href: '/dashboard/club-list/approved'
+},
   
 ], [pathname]);
 
@@ -63,7 +69,7 @@ const admins = useMemo(() => [
 ], [pathname]);
 
   return (
-    <div className='bg-white rounded-lg m-2 shadow-lg font-Roboto'>
+    <div className='bg-white rounded-lg m-2 shadow-lg font-Roboto  h-full'>
       <div>
         <div className='flex items-center p-2 justify-between hover:bg-gray-200 hover:rounded-t-md cursor-pointer'>
          <Link to="/dashboard" className='flex items-center gap-4'>
@@ -116,7 +122,7 @@ const admins = useMemo(() => [
           </Accordion>
 
           <Accordion className=' rounded-lg text-sm mt-1' isCompact>
-            <AccordionItem title="Клуб" className=''>
+            <AccordionItem title="Байгууллагууд" className=''>
               {
                 clubs.map((data, index) => {
                   return(
