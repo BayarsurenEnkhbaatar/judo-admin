@@ -1,4 +1,5 @@
-const mainUrl = "http://localhost:5000"
+// const mainUrl = "http://localhost:5000"
+const mainUrl = "https://www.judobackend.arigun.mn"
 
 //auth urls
 export const org_uri = mainUrl + "/org";
