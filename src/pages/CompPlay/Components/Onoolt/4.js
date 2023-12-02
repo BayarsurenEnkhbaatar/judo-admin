@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import Round1Card from '../Rounds/round1card';
-import Round2Card from '../Rounds/round2card';
-import Round3Card from '../Rounds/round3card';
+import React, { useState } from 'react';
+import Round1Card from '../Rounds/Athletes4/round1card';
+import Round2Card from '../Rounds/Athletes4/round2card';
 
 const Onoolt4 = ({data, group, callback}) => {
     const round1 = data.filter(item => item.group === group).filter(item => item.round === 1).sort((a, b) => a.match_number - b.match_number);

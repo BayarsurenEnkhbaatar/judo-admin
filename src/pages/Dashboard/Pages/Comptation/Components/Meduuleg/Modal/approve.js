@@ -4,15 +4,21 @@ import { useParams } from "react-router-dom";
 import { comp_to_org_uri } from "../../../../../../../utils/url";
 import { GET, PATCH } from "../../../../../../../utils/requests";
 import { STATUS } from "../../../../../../../utils/types";
+import {toast} from 'react-toastify'
 
-export default function ApproveModal() {
+export default function ApproveModal({callback}) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const params = useParams();
   const [data, setData] = useState({})
+  const [load, setLoad] = useState(false);
 
   useEffect(()=>{
     Get();
   }, []);
+
+  const handlaCall =() => {
+    callback();
+  }
 
   const Get = async () => {
     const res = await GET(comp_to_org_uri+ `?comp_id=${params.slug}&org_id=${params.org}`);
@@ -20,8 +26,16 @@ export default function ApproveModal() {
   };
 
   const Submit = async () => {
+    setLoad(true)
     const res = await PATCH({uri:comp_to_org_uri, data:{comp_id:params.slug, org_id: params.org, status:STATUS.APPROVED}});
-    console.log(res)
+    if(res.status === 200){
+      onOpenChange(false);
+      toast.success("Амжилттай баталгаажууллаа");
+      handlaCall();
+      return setLoad(false);
+    }
+    toast.error("Алдаа гарлаа !");
+    setLoad(false);
   };
 
   return (
@@ -56,9 +70,16 @@ export default function ApproveModal() {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
+                {
+                  load?
+                <Button color="primary">
+                  Баталгаажуулж байна ...
+                </Button>
+                :
                 <Button color="primary" onPress={Submit}>
                   Баталгаажуулах
                 </Button>
+                }
               </ModalFooter>
             </>
           )}

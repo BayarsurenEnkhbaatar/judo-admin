@@ -24,12 +24,16 @@ const MeduulegDetail = () => {
       setData({...data, male:male, female:female, org:org.data, comp:b.data.category.comp});
     };
 
+    const callback = () =>{
+      Get();
+    }
+
   return (
     <div className='font-Roboto'>
         <Link to={`/dashboard/comp-list/${params.slug}`}>{'< Буцах'}</Link>
         <h1 className='text-xl uppercase mb-8 text-center'>{data.org.name} дэлгэрэнгүй мэдүүлэг</h1>
         <div className='flex justify-end items-center gap-2'>
-            <ApproveModal/>
+            <ApproveModal callback={callback}/>
             <MandatPDF org={data.org} org={data.org} comp={data.comp}/>
             <MeduulegPDF male={data.male} female={data.female} org={data.org}/>
         </div>

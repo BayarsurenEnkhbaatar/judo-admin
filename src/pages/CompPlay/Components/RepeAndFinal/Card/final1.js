@@ -3,13 +3,18 @@ import { PATCH } from '../../../../../utils/requests';
 import { matches_uri } from '../../../../../utils/url';
 
 const Final1 = ({data, callback}) => {
+  
   const handleCallback = () => {
     callback();
   }
 
-  const Submit = async ({el}) => {
-    const datas = {data, el}
+  const Submit = async ({winner, lose}) => {
+    const datas = {data, winner, lose}
     const res = await PATCH({uri:matches_uri + `/winner-final`, data:datas})
+    if(res.status === 200){
+
+    }
+    console.log(res)
     handleCallback();
   }
 
@@ -25,7 +30,7 @@ const Final1 = ({data, callback}) => {
                 <h1>{data?.athlete1.lastname.charAt(0)}.{data?.athlete1.username}</h1>
               </div>
             }
-            <div onClick={() => Submit({el:data.athlete1})}>
+            <div onClick={() => Submit({winner:data.athlete1, lose:data.athlete2 })}>
               <img className='h-5 rounded-full bg-gray-200 p-1 hover:bg-gray-300 cursor-pointer' src='../../icons/check.png'/>
             </div>
           </div>
@@ -38,7 +43,7 @@ const Final1 = ({data, callback}) => {
                 <h1>{data?.athlete2.lastname.charAt(0)}.{data?.athlete2.username}</h1>
               </div>
             }
-            <div onClick={() => Submit({el:data.athlete2})}>
+            <div onClick={() => Submit({winner:data.athlete2, lose:data.athlete1 })}>
               <img className='h-5 rounded-full bg-gray-200 p-1 hover:bg-gray-300 cursor-pointer' src='../../icons/check.png'/>
             </div>
           </div>

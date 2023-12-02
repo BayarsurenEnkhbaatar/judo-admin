@@ -1,8 +1,8 @@
 import React from 'react'
-import { PATCH } from '../../../../utils/requests';
-import { matches_uri } from '../../../../utils/url';
+import { PATCH } from '../../../../../utils/requests';
+import { matches_uri } from '../../../../../utils/url';
 
-const Round2Card = ({data, callback}) => {
+const Round1CardAthlets64 = ({data, callback}) => {
 
   const handleCallback = () => {
     callback();
@@ -48,4 +48,4 @@ const Round2Card = ({data, callback}) => {
   )
 }
 
-export default Round2Card
+export default Round1CardAthlets64

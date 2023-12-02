@@ -5,7 +5,6 @@ const Final = ({data, callback}) => {
     const round1 = data.filter(item => item.round === 1).sort((a, b) => a.match_number - b.match_number);
     const round2 = data.filter(item => item.round === 2).sort((a, b) => a.match_number - b.match_number);
     const round3 = data.filter(item => item.round === 3).sort((a, b) => a.match_number - b.match_number);
-    console.log(round3[0])
     
   return (
     <div className='flex overflow-auto'>

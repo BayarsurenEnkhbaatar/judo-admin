@@ -12,7 +12,7 @@ const JinControl = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
 
-  const Get = async()=> {
+  const Get = async() => {
     try{
       const res = await GET(athlete_to_comptation_uri+`s?comp_id=${params.comp}&kg=${params.kg}&status=${STATUS.PENDING}&username=${search}`)
       setData(res.data)

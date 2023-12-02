@@ -1,15 +1,15 @@
-import React from 'react'
-import { PATCH } from '../../../../utils/requests';
-import { matches_uri } from '../../../../utils/url';
 
-const Round1Card = ({data, callback}) => {
+import React from 'react'
+import { PATCH } from '../../../../../utils/requests';
+import { matches_uri } from '../../../../../utils/url';
+
+const Round3CardAthlets8 = ({data, callback}) => {
 
   const handleCallback = () => {
     callback();
   }
 
   const Submit = async ({el}) => {
-    console.log(el);
     const datas = {data, el}
     const res = await PATCH({uri:matches_uri + `/winner`, data:datas})
     handleCallback();
@@ -17,11 +17,11 @@ const Round1Card = ({data, callback}) => {
   
   
   return (
-    <div className='border-2 p-1 justify-between flex-col w-60 mt-1'>
+    <div className='border-t border-b border-r p-1 h-full flex justify-between flex-col w-48 mt-1'>
         <div className='flex justify-between items-center'>
            <>
             {
-              data?.athlete1.id === 111 ? 
+              data?.athlete1.id === 111 ?
               <h1 className='text-white'>.</h1>
               :
               data?.athlete1.username
@@ -48,4 +48,4 @@ const Round1Card = ({data, callback}) => {
   )
 }
 
-export default Round1Card
+export default Round3CardAthlets8

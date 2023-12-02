@@ -154,7 +154,7 @@ const admins = useMemo(() => [
           </Accordion>
 
         </div>
-        <div className='mx-4 mt-40 absolute z-20 bottom-10 w-52'>
+        <div className='mx-4 mt-40 bottom-10 w-52'>
           <Link to="/" className='flex items-center gap-4 bg-gray-200 rounded-lg p-2 pl-4 cursor-pointer hover:bg-gray-300'>
             <FiLogOut size={20}/>
             <h1 className='text-sm'>Гарах</h1>

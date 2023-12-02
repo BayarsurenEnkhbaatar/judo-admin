@@ -13,7 +13,6 @@ const Onoolt32 = ({athletes, data}) => {
     const router = useNavigate();
 
     const onChange = (value) => {
-        console.log(value)
         setValues([...values, value]);
     };
 
