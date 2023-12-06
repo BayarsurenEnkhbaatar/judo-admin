@@ -9,7 +9,7 @@ import ComptationCalendar from './pages/Dashboard/Pages/Comptation/calendar';
 import ClubLists from './pages/Dashboard/Pages/Clubs/req'
 import Admins from './pages/Dashboard/Pages/Admins/admin'
 import ClubApproved from './pages/Dashboard/Pages/Clubs/approved';
-import DrawComptation from './pages/Dashboard/Pages/Comptation/draw';
+import DrawComptation from './pages/Dashboard/Pages/Comptation/detail';
 import CompOnooltDetail from './pages/Onoolt/comp-details-onoolt';
 import CompPlay from './pages/CompPlay/comp_play';
 import JinControl from './pages/JinControl/index';
