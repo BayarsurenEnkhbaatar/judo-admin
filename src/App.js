@@ -14,6 +14,8 @@ import CompOnooltDetail from './pages/Onoolt/comp-details-onoolt';
 import CompPlay from './pages/CompPlay/comp_play';
 import JinControl from './pages/JinControl/index';
 import MeduulegDetail from './pages/Dashboard/Pages/Comptation/meduuleg-detail';
+import ClubExpired from './pages/Dashboard/Pages/Clubs/expired';
+import TeamsExpired from './pages/Dashboard/Pages/Teams/expired';
 
 function App() {
   return (
@@ -28,12 +30,14 @@ function App() {
           <Route index element={<Dashboard/>}/>
           <Route path="teams-req" element={<TeamsReq/>}/>
           <Route path="teams-active" element={<TeamsActive/>}/>
+          <Route path="teams-expired" element={<TeamsExpired/>}/>
           <Route path="comp-list" element={<ComptationList/>}/>
           <Route path="comp-list/:slug" element={<DrawComptation/>}/>
           <Route path="comp-list/:slug/:org" element={<MeduulegDetail/>}/>
           <Route path="comp-calendar" element={<ComptationCalendar/>}/>
           <Route path="club-list/requested" element={<ClubLists/>}/>
           <Route path="club-list/approved" element={<ClubApproved/>}/>
+          <Route path="club-list/expired" element={<ClubExpired/>}/>
           <Route path="admins" element={<Admins/>}/>
         </Route>
         

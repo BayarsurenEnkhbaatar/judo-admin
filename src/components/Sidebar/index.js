@@ -18,6 +18,12 @@ const Sidebar = () => {
           href: '/dashboard/teams-req'
       },
       {
+        icon: HiHome,
+        label:'Гишүүнчлэл дууссан',
+        activate: pathname === '/dashboard/teams-expired',
+        href: '/dashboard/teams-expired'
+      },
+      {
           icon: HiHome,
           label:'Баталгаажсан',
           activate: pathname === '/dashboard/teams-active',
@@ -51,10 +57,16 @@ const clubs = useMemo(() => [
   },
   {
     icon: HiHome,
+    label:'Гишүүнчлэл дууссан',
+    activate: pathname === '/dashboard/club-list/expired',
+    href: '/dashboard/club-list/expired'
+  },
+  {
+    icon: HiHome,
     label:'Баталгаажсан',
     activate: pathname === '/dashboard/club-list/approved',
     href: '/dashboard/club-list/approved'
-},
+  },
   
 ], [pathname]);
 
