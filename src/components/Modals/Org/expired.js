@@ -17,8 +17,10 @@ export default function ExpiredModal({data, callback}) {
   const handleCallback = () => {
     callback();
   }
-  var oneYearFromNow = new Date().toISOString();
+  var currentDate = new Date();
+  var oneYearFromNow = new Date(currentDate);
   oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+  
     
   const Submit =async () => {
     setLoad(true);
