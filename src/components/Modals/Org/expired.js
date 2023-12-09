@@ -17,10 +17,12 @@ export default function ExpiredModal({data, callback}) {
   const handleCallback = () => {
     callback();
   }
-
+  var oneYearFromNow = new Date().toISOString();
+  oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+    
   const Submit =async () => {
     setLoad(true);
-    const res = await PATCH({uri:org_uri+`/expired-approved`, data:{id: id}})
+    const res = await PATCH({uri:org_uri+`/expired-approved`, data:{id: id, date:oneYearFromNow}})
     if(res.status === 200){
       toast.success("амжилттай сунгалаа");
       setLoad(false);
