@@ -4,7 +4,6 @@ import {BsFileEarmarkExcel, BsSearch} from 'react-icons/bs'
 import Paginations from '../../../../components/Paginations';
 import {GET} from '../../../../utils/requests'
 import { org_uri } from '../../../../utils/url';
-import ApprovedModal from '../../../../components/Modals/Org/approved';
 import ExpiredModal from '../../../../components/Modals/Org/expired';
 
 const ClubExpired = () => {
