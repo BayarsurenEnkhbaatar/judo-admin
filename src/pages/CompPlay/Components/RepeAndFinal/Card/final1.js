@@ -14,7 +14,6 @@ const Final1 = ({data, callback}) => {
     if(res.status === 200){
 
     }
-    console.log(res)
     handleCallback();
   }
 

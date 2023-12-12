@@ -2,7 +2,7 @@ import React from 'react'
 
 const MandatCard = ({data, org, comp}) => {
   return (
-        <div className='border-2 border-blue-700 font-Roboto w-[105mm] h-[148mm] bg-mandat bg-cover'>
+        <div className='border-1 border-blue-700 font-Roboto w-[105mm] h-[147.5mm] bg-mandat bg-cover'>
             <div className='bg-blue-600 text-white py-6'>
                 <h1 className='text-center uppercase text-xs'>Монголын жүдо бөхийн холбоо</h1>
                 <h1 className='text-center uppercase text-2xl'>{comp.name} МАНДАТ</h1>
