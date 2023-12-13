@@ -57,9 +57,6 @@ const TeamsActive = () => {
                       <th scope="col" className="p-4 text-sm font-normal">
                         No
                       </th>
-                      <th scope="col" className="p-4 text-sm font-normal">
-                        Зураг
-                      </th>
                       <th scope="col" className="py-2 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                         Овог нэр
                       </th>
@@ -87,18 +84,16 @@ const TeamsActive = () => {
                         data.map((item, index) => {
                           return(
                             <tr className="hover:bg-gray-100 dark:hover:bg-gray-700" key={index}>
-                                <td className="p-2 w-4">
+                                <td className="p-2 w-4 text-center">
+                                  {index+1}
                                 </td>
-                                <td className="p-2 w-4">
-                                  <Avatar isBordered radius="lg" src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
-                                </td> 
                                 <td className="py-2 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white flex flex-col">
                                   <label className=''>{item.lastname}</label>
                                   <label className='font-semibold'>{item.username}</label>
                                 </td>
                                 <td className="py-2 px-6 text-sm font-medium text-gray-500  dark:text-white text-overflow">{item.birth_date}</td>
                                 <td className="py-2 px-6 text-sm font-medium whitespace-nowrap dark:text-white text-blue-700">
-                                {item.gender}
+                                  {item.gender}
                                 </td>
                                 
                                 <td className="py-2 px-6 text-sm font-medium text-right whitespace-nowrap">
@@ -113,7 +108,7 @@ const TeamsActive = () => {
                     </tbody>
                   }
                 </table>
-               {
+                {
                   data.length === 0 &&
                   <div className='bg-white pt-8 text-center flex items-center justify-center flex-col'>
                     <img className='h-24' src='../../../icons/empty-box.png'/>
