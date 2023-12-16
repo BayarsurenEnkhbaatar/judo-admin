@@ -12,7 +12,7 @@ export default function MandatPDF({org, comp}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [athletes, setAthletes] = useState([]);
   
-  useEffect(()=>{
+  useEffect(() => {
     Get();
   }, []);
 

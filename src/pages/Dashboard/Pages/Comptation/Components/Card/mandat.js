@@ -1,6 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { IMAGE_GET } from '../../../../../../utils/requests';
 
 const MandatCard = ({data, org, comp}) => {
+    const [profile, setProfile] = useState();
+
+    // const Get = async () => {
+    //   const res = await IMAGE_GET({key:data.athlete.profile_img});
+    //   setProfile(res);
+    //   console.log(res)
+    // }
+    const Get = async () => {
+        const res = await IMAGE_GET({ key: data.athlete.profile_img });
+        const blob = new Blob([res]);
+        const dataUrl = URL.createObjectURL(blob);
+        setProfile(dataUrl);
+        console.log(dataUrl)
+    };
+    
+      
+      
+    useEffect(() => {
+      Get();
+    }, [data]);
+
   return (
         <div className='border-1 border-blue-700 font-Roboto w-[105mm] h-[147.5mm] bg-mandat bg-cover'>
             <div className='bg-blue-600 text-white py-6'>
@@ -14,7 +36,8 @@ const MandatCard = ({data, org, comp}) => {
                     <img className='h-20' src='../../../icons/ijf.png'/>
                 </div>
                 <div className='flex justify-center mt-4'>
-                    <div className='bg-gray-200 h-[4cm] w-[3cm]'></div>
+                    {/* <div className='bg-gray-200 h-[4cm] w-[3cm]'></div> */}
+                    <img className='h-[4cm] w-[3cm]' src={profile}/>
                 </div>
                 <div className='flex justify-center py-4 '>
                     <div className='w-full px-10'>
