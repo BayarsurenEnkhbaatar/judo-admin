@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/auth'
 const Home = () => {
   const {currentUser} = useContext(AuthContext);
 
-  if(!currentUser){
+  if(currentUser){
     return (
       <div className='bg-[#f3f4f5] font-Roboto'>
             <div className='grid xs:grid-cols-1 md:grid-cols-4 xl:grid-cols-6 gap-1'>

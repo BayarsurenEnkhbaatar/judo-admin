@@ -4,7 +4,6 @@ import {BsFileEarmarkExcel, BsSearch} from 'react-icons/bs'
 import Paginations from '../../../../components/Paginations';
 import {GET} from '../../../../utils/requests'
 import { comp_uri } from '../../../../utils/url';
-import ReqModal from '../../../../components/Modals/Org/req';
 import CompAddModal from '../../../../components/Modals/Comptation/add'
 import DateFormat from '../../../../components/Date';
 import {Link} from 'react-router-dom'

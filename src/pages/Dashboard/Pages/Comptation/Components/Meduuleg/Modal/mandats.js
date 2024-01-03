@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import {Button} from '@nextui-org/react'
+import { utils_uri } from '../../../../../../../utils/url';
 
 const Mandats = () => {
   const params = useParams();
@@ -124,8 +126,10 @@ const Mandats = () => {
   </html>
   
   `);
+  const [load, setLoad] = useState(false);
 
   const generatePDF = async () => {
+      setLoad(true);
     try {
       // const dynamicData = [
       //   {
@@ -215,7 +219,7 @@ const Mandats = () => {
       //   );
       // }).join('');
 
-      const response = await fetch('http://localhost:5000/utils/pdf', {
+      const response = await fetch(utils_uri+`/pdf`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -229,14 +233,21 @@ const Mandats = () => {
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       window.open(url, '_blank'); // Open the PDF in a new tab/window
+      setLoad(false);
     } catch (error) {
+      setLoad(false);
       console.error('Error generating PDF:', error);
     }
   };
 
   return (
     <div>
-      <button onClick={generatePDF}>Generate PDF</button>
+      {
+          load?
+          <Button className='bg-gray-300 text-blue-800 animate-bounce' size='sm'>Мандатыг боловсруулж байна ...</Button>
+          :
+          <Button className='bg-blue-800 text-white' size='sm' onClick={generatePDF}>Generate PDF мандат</Button>
+      }
     </div>
   );
 };

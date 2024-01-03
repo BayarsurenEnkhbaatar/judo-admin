@@ -7,9 +7,9 @@ const Header = () => {
     <div className='bg-white rounded-lg p-4 shadow-lg font-Roboto my-2 w-full'>
         <div className='flex justify-between'>
             <div className='flex gap-4 items-center'>
-                <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" size="sm"/>
+                <Avatar src="https://media.cnn.com/api/v1/images/stellar/prod/170831100335-sumiya-dorjsuren-budapest-world-championship-mongolia-judo-tease.jpg?q=w_2889,h_3600,x_0,y_0,c_fill" size="sm"/>
                 <div>
-                    <h1 className='text-sm font-bold'>Bolor Erdenebat</h1>
+                    <h1 className='text-sm font-bold'>Admin</h1>
                     <p className='text-xs'>Manager</p>
                 </div>
             </div>

@@ -36,7 +36,7 @@ const MeduulegDetail = () => {
         <div className='flex justify-end items-center gap-2'>
             <ApproveModal callback={callback}/>
             <Mandats/>
-            <MandatPDF org={data.org} org={data.org} comp={data.comp}/>
+            {/* <MandatPDF org={data.org} org={data.org} comp={data.comp}/> */}
             <MeduulegPDF male={data.male} female={data.female} org={data.org}/>
         </div>
         <div className='mt-2'>

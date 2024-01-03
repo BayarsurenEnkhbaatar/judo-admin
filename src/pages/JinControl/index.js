@@ -39,7 +39,7 @@ const JinControl = () => {
           <div className='bg-blue-600 py-6 text-white'>
           <h1 onClick={()=> navigate(-1)} className='cursor-pointer ml-4'>Буцах</h1>
             <h1 className='text-lg font-bold text-center uppercase'>Жингийн контрол хийх</h1>
-            <h1 className='text-4xl font-bold text-center'>Боржин цом 2023</h1>
+            {/* <h1 className='text-4xl font-bold text-center'>Боржин цом 2023</h1> */}
             <h1 className='text-4xl font-bold text-center'>{params.kg} кг</h1>
           </div>
           <div className='p-4'>

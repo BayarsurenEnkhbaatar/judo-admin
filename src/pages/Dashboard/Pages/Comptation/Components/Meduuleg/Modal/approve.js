@@ -32,6 +32,7 @@ export default function ApproveModal({callback}) {
       onOpenChange(false);
       toast.success("Амжилттай баталгаажууллаа");
       handlaCall();
+      Get();
       return setLoad(false);
     }
     toast.error("Алдаа гарлаа !");

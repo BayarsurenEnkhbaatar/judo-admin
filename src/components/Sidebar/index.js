@@ -24,10 +24,10 @@ const Sidebar = () => {
         href: '/dashboard/teams-expired'
       },
       {
-          icon: HiHome,
-          label:'Баталгаажсан',
-          activate: pathname === '/dashboard/teams-active',
-          href: '/dashboard/teams-active'
+        icon: HiHome,
+        label:'Баталгаажсан',
+        activate: pathname === '/dashboard/teams-active',
+        href: '/dashboard/teams-active'
       },
       
   ], [pathname]);

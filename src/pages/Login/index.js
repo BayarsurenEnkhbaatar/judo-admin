@@ -1,10 +1,19 @@
 import { Button, Input } from '@nextui-org/react'
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../context/auth'
 
 const Login = () => {
     const navigate = useNavigate();
+    const {login} = useContext(AuthContext);
+    const [data, setData] = useState({username:'', password:'', load:false});
+
+    const sub = async() =>{
+        setData({...data, load:true});
+       await login(data);
+       setData({...data, load:false});
+    }
 
   return (
     <div className='font-Roboto'>
@@ -21,14 +30,20 @@ const Login = () => {
 
                         <div className=''>
                             <h1 className='font-bold text-sm'>Нэвтрэх нэр</h1>
-                            <Input type="email" label="Нэвтрэх нэр оруулах" size="sm" className="mt-2"/>
+                            <Input onChange={(e)=>setData({...data, username:e.target.value})} type="email" label="Нэвтрэх нэр оруулах" size="sm" className="mt-2"/>
                         </div>
                         <div className='mt-2'>
                         <h1 className='font-bold text-sm'>Нууц үг</h1>
-                        <Input type="password" label="Нууц үг оруулах" size="sm" className="mt-2"/>
+                        <Input onChange={(e)=>setData({...data, password:e.target.value})} type="password" label="Нууц үг оруулах" size="sm" className="mt-2"/>
                         </div>
 
-                        <Button onClick={()=> navigate('/dashboard')} className='text-white bg-blue-800 w-full mt-10'>Нэвтрэх</Button>
+                        {
+                            data.load?
+                            <Button className='text-white bg-blue-800 w-full mt-10'>Шалгаж байна ... </Button>
+                            :
+                            <Button onClick={sub} className='text-white bg-blue-800 w-full mt-10'>Нэвтрэх</Button>
+                        }
+
                         <div className='text-center mt-6'>
                         <Link to="/">Хэрэв бүртгэлтэй бол ?<span className='text-blue-700 font-semibold ml-2'>Нүүр хуудасруу шилжих</span></Link>
                         </div>

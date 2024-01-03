@@ -5,16 +5,17 @@ import { Steps } from 'antd';
 import { DatePicker } from 'antd';
 import { GET, IMAGE_UPLOAD, POST } from "../../../utils/requests";
 import { category_uri, comp_uri } from "../../../utils/url";
-import {ATTYPES} from '../../../utils/types'
+import {ATTYPES, GENDER} from '../../../utils/types'
 import {toast} from 'react-toastify'
 
 export default function CompAddModal({callback}) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [step, setStep] = useState(0);
   const [category, setCategory] = useState([]);
-  const [data, setData] = useState({name:"", desc:"", province:"", sum:"", start_date:"", end_date:"", 
-  orgenizer:"", cover_img:"", categorys:[], mandat_price:"", more_address:"", type:""});
+  const [data, setData] = useState({name:"", desc:"", province:"", sum:"", start_date:"", end_date:"",
+  orgenizer:"", cover_img:"", categorys:[], mandat_price:"", more_address:"", type:"", guide_doc:""});
   const [imgload, setImgload] = useState(false);
+  const [docload, setDocload] = useState(false);
   const steps = [{title: 'Ерөнхий мэдээлэл',content: 'First-content',},{title: 'Зохион байгуулагч',content: 'Second-content',},{title: 'Ангилал, жингийн мэдээлэл',content: 'Last-content',},];
 
   const items = steps.map((item) => ({
@@ -57,7 +58,7 @@ export default function CompAddModal({callback}) {
     });
   }
 
-  const Submit = async () =>{
+  const Submit = async () => {
     if(data.name === "", data.desc === "" || data.province === ""||data.sum === ""|| data.start_date === ""|| data.end_date === ""|| data.orgenizer === ""|| data.categorys === [] || data.mandat_price === ""){
      return toast.warning("Та мэдээллээ бүрэн оруулна уу !")
     }
@@ -90,6 +91,19 @@ export default function CompAddModal({callback}) {
       setImgload(false);
     } catch (error) {
       setImgload(false);
+      console.error('Error uploading file', error);
+    }
+  };
+
+  const handleUploadGuideDoc = async (e) => {
+    setDocload(true);
+    const file = e.target.files[0];
+    try {
+      const res = await IMAGE_UPLOAD({file:file})
+      setData({...data, guide_doc:res});
+      setDocload(false);
+    } catch (error) {
+      setDocload(false);
       console.error('Error uploading file', error);
     }
   };
@@ -160,7 +174,7 @@ export default function CompAddModal({callback}) {
                           </SelectItem>
                         ))}
                       </Select>
-
+                      <h1 className="text-sm font-bold mt-4">Тэмцээний ковер зураг</h1>
                       <input className="mt-1" type='file' onChange={handleUpload}/>
 
                       {
@@ -200,12 +214,36 @@ export default function CompAddModal({callback}) {
                                       item.type === ATTYPES.SENIOR &&
                                       <h1 className='bg-fuchsia-600 text-white p-1 text-xs rounded-md'>Насанд хүрэгчид</h1>
                                     }
+                                    {
+                                      item.type === ATTYPES.MASTERS &&
+                                      <h1 className='bg-fuchsia-600 text-white p-1 text-xs rounded-md'>Мастерс</h1>
+                                    }
+                                    <div>
+                                      {
+                                        item.gender === GENDER.FEMALE &&
+                                        <h1 className='bg-blue-600 text-white p-1 text-xs rounded-md'>Эрэгтэй</h1>
+                                      }
+                                      {
+                                        item.gender === GENDER.MALE &&
+                                        <h1 className='bg-pink-600 text-white p-1 text-xs rounded-md'>Эмэгтэй</h1>
+                                      }
+                                    </div>
                                   </div>
                               </div>
                             )
                           })
                         }
                       </div>
+                      <h1 className="text-sm font-bold mt-4">Тэмцээний удирдамж оруулах</h1>
+                      <input className="mt-1" type='file' onChange={handleUploadGuideDoc}/>
+                      {
+                        docload &&
+                        <div className="mt-1 flex items-center gap-2">
+                          <h1 className="text-sm">Удирдамж хадгалж байна...</h1>
+                          <Spinner size='sm'/>
+                        </div>
+                      }
+
                     </div>
                   }
 

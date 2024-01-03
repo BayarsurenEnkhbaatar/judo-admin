@@ -3,7 +3,7 @@ const mainUrl = "https://www.judobackend.arigun.mn"
 
 //auth urls
 export const org_uri = mainUrl + "/org";
-export const loginUri = mainUrl + "/org";
+export const loginUri = mainUrl + "/admin";
 export const logoutUri = mainUrl + "/org";
 
 export const athlete_uri = mainUrl + "/athlete";
