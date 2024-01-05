@@ -230,9 +230,39 @@ const Mandats = () => {
         }),
       });
 
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      window.open(url, '_blank'); // Open the PDF in a new tab/window
+    //   const blob = await response.blob();
+    //   const url = window.URL.createObjectURL(blob);
+    //     var reader = new FileReader();
+    //     reader.readAsDataURL(blob); 
+    //     reader.onloadend = function() {
+    //     var base64data = reader.result;  
+    //     const myWindow = window.open('');
+    //     console.log(base64data)
+    //         myWindow.document.write(
+    //             '<iframe width="100%" height="100%" src="data:application/pdf;base64, '+ base64data +'"></iframe>'
+    //         )
+    //     }
+
+
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+
+    const myWindow = window.open('');
+    const pdfObject = document.createElement('object');
+    pdfObject.data = url;
+    pdfObject.type = 'application/pdf';
+    pdfObject.width = '100%';
+    pdfObject.height = '100%';
+
+    const pdfEmbed = document.createElement('embed');
+    pdfEmbed.src = url;
+    pdfEmbed.type = 'application/pdf';
+
+    pdfObject.appendChild(pdfEmbed);
+    myWindow.document.body.appendChild(pdfObject);
+        
+    //   window.open(url, '_blank');
       setLoad(false);
     } catch (error) {
       setLoad(false);
