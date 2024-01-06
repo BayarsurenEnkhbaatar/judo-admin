@@ -230,19 +230,41 @@ const Mandats = () => {
         }),
       });
 
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-        var reader = new FileReader();
-        reader.readAsDataURL(blob); 
-        reader.onloadend = function() {
-        var base64data = reader.result;  
+      const pdfContent = await response.text();
+
+        // const myWindow = window.open('');
+        // myWindow.document.write(
+        //     '<iframe width="100%" height="100%" src="data:application/pdf;base64, '+ response +'"></iframe>'
+        // )
         const myWindow = window.open('');
-        console.log(base64data)
-            myWindow.document.write(
-                // '<iframe width="100%" height="100%" src="data:application/pdf;base64, '+ base64data +'"></iframe>'
-                `<iframe width="100%" height="100%" src="${base64data}"></iframe>`
-            )
-        }
+        myWindow.document.write(
+            '<iframe width="100%" height="100%" src="data:application/pdf;base64, ' + pdfContent + '"></iframe>'
+        );
+
+     setLoad(false);
+    } catch (error) {
+      setLoad(false);
+      console.error('Error generating PDF:', error);
+    }
+  };
+
+  return (
+    <div>
+      {
+          load?
+          <Button className='bg-gray-300 text-blue-800 animate-bounce' size='sm'>Мандатыг боловсруулж байна ...</Button>
+          :
+          <Button className='bg-blue-800 text-white' size='sm' onClick={generatePDF}>Generate PDF мандат</Button>
+      }
+    </div>
+  );
+};
+
+export default Mandats;
+
+
+
+
 
 
 
@@ -264,23 +286,3 @@ const Mandats = () => {
     // myWindow.document.body.appendChild(pdfObject);
         
     //   window.open(url, '_blank');
-      setLoad(false);
-    } catch (error) {
-      setLoad(false);
-      console.error('Error generating PDF:', error);
-    }
-  };
-
-  return (
-    <div>
-      {
-          load?
-          <Button className='bg-gray-300 text-blue-800 animate-bounce' size='sm'>Мандатыг боловсруулж байна ...</Button>
-          :
-          <Button className='bg-blue-800 text-white' size='sm' onClick={generatePDF}>Generate PDF xzxzмандат</Button>
-      }
-    </div>
-  );
-};
-
-export default Mandats;
