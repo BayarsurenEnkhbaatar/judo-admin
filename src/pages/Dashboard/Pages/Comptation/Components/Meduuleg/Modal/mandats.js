@@ -131,94 +131,6 @@ const Mandats = () => {
   const generatePDF = async () => {
       setLoad(true);
     try {
-      // const dynamicData = [
-      //   {
-      //     title: 'Sample Title 1',
-      //     content: 'Sample Content 1',
-      //     imageUrl: '<../../../icons/ijf.png',
-      //   },
-      //   {
-      //     title: 'Sample Title 2',
-      //     content: 'Sample Content 2',
-      //     imageUrl: '<../../../icons/ijf.png',
-      //   },
-      //   {
-      //       title: 'Sample Title 2',
-      //       content: 'Sample Content 2',
-      //       imageUrl: '<../../../icons/ijf.png',
-      //     },
-      //     {
-      //       title: 'Sample Title 1',
-      //       content: 'Sample Content 1',
-      //       imageUrl: '<../../../icons/ijf.png',
-      //     },
-      //     {
-      //       title: 'Sample Title 2',
-      //       content: 'Sample Content 2',
-      //       imageUrl: '<../../../icons/ijf.png',
-      //     },
-      //     {
-      //         title: 'Sample Title 2',
-      //         content: 'Sample Content 2',
-      //         imageUrl: '<../../../icons/ijf.png',
-      //       },
-      //       {
-      //           title: 'Sample Title 1',
-      //           content: 'Sample Content 1',
-      //           imageUrl: '<../../../icons/ijf.png',
-      //         },
-      //         {
-      //           title: 'Sample Title 2',
-      //           content: 'Sample Content 2',
-      //           imageUrl: '<../../../icons/ijf.png',
-      //         },
-      //         {
-      //             title: 'Sample Title 2',
-      //             content: 'Sample Content 2',
-      //             imageUrl: '<../../../icons/ijf.png',
-      //           },
-      //           {
-      //               title: 'Sample Title 1',
-      //               content: 'Sample Content 1',
-      //               imageUrl: '<../../../icons/ijf.png',
-      //             },
-      //             {
-      //               title: 'Sample Title 2',
-      //               content: 'Sample Content 2',
-      //               imageUrl: '<../../../icons/ijf.png',
-      //             },
-      //             {
-      //                 title: 'Sample Title 2',
-      //                 content: 'Sample Content 2',
-      //                 imageUrl: '<../../../icons/ijf.png',
-      //               },
-      //               {
-      //                   title: 'Sample Title 1',
-      //                   content: 'Sample Content 1',
-      //                   imageUrl: '<../../../icons/ijf.png',
-      //                 },
-      //                 {
-      //                   title: 'Sample Title 2',
-      //                   content: 'Sample Content 2',
-      //                   imageUrl: '<../../../icons/ijf.png',
-      //                 },
-      //                 {
-      //                     title: 'Sample Title 2',
-      //                     content: 'Sample Content 2',
-      //                     imageUrl: '<../../../icons/ijf.png',
-      //                   },
-                        
-      //   // ... add more dynamic data objects as needed
-      // ];
-
-      // // Combine dynamic HTML content for each data object
-      // const dynamicHtml = dynamicData.map((data) => {
-      //   return Object.keys(data).reduce(
-      //     (acc, key) => acc.replace(new RegExp(`{{${key}}}`, 'g'), data[key]),
-      //     htmlContent
-      //   );
-      // }).join('');
-
       const response = await fetch(utils_uri+`/pdf`, {
         method: 'POST',
         headers: {
@@ -230,16 +142,25 @@ const Mandats = () => {
         }),
       });
 
-      const pdfContent = await response.text();
+        const pdfContent = await response.blob();
 
         // const myWindow = window.open('');
         // myWindow.document.write(
         //     '<iframe width="100%" height="100%" src="data:application/pdf;base64, '+ response +'"></iframe>'
         // )
-        const myWindow = window.open('');
-        myWindow.document.write(
-            '<iframe width="100%" height="100%" src="data:application/pdf;base64, ' + pdfContent + '"></iframe>'
-        );
+
+        const pdfUrl = URL.createObjectURL(pdfContent);
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.download = 'file.pdf'; // Specify the desired file name
+    
+        // Programmatically click the link to trigger the download
+        link.click();
+      
+        // const myWindow = window.open('');
+        // myWindow.document.write(
+        //     '<iframe width="100%" height="100%" src="data:application/pdf;base64, ' + pdfContent + '"></iframe>'
+        // );
 
      setLoad(false);
     } catch (error) {
