@@ -152,6 +152,7 @@ const Mandats = () => {
         const pdfUrl = URL.createObjectURL(pdfContent);
         const link = document.createElement('a');
         link.href = pdfUrl;
+        console.log(pdfUrl);
         link.download = 'file.pdf'; // Specify the desired file name
     
         // Programmatically click the link to trigger the download
@@ -175,7 +176,7 @@ const Mandats = () => {
           load?
           <Button className='bg-gray-300 text-blue-800 animate-bounce' size='sm'>Мандатыг боловсруулж байна ...</Button>
           :
-          <Button className='bg-blue-800 text-white' size='sm' onClick={generatePDF}>Generate PDF мандат</Button>
+          <Button className='bg-blue-800 text-white' size='sm' onClick={generatePDF}>Generate PDFsa мандат</Button>
       }
     </div>
   );
