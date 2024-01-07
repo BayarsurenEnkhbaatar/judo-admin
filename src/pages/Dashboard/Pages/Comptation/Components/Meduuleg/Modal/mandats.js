@@ -142,26 +142,24 @@ const Mandats = () => {
         }),
       });
 
-        const pdfContent = await response.blob();
+        const pdfContent = await response.text();
 
         // const myWindow = window.open('');
         // myWindow.document.write(
         //     '<iframe width="100%" height="100%" src="data:application/pdf;base64, '+ response +'"></iframe>'
         // )
 
-        const pdfUrl = URL.createObjectURL(pdfContent);
-        const link = document.createElement('a');
-        link.href = pdfUrl;
-        console.log(pdfUrl);
-        link.download = 'file.pdf'; // Specify the desired file name
-    
-        // Programmatically click the link to trigger the download
-        link.click();
+        // const pdfUrl = URL.createObjectURL(pdfContent);
+        // const link = document.createElement('a');
+        // link.href = pdfUrl;
+        // console.log(pdfUrl);
+        // link.download = 'file.pdf'; 
+        // link.click();
       
-        // const myWindow = window.open('');
-        // myWindow.document.write(
-        //     '<iframe width="100%" height="100%" src="data:application/pdf;base64, ' + pdfContent + '"></iframe>'
-        // );
+        const myWindow = window.open('');
+        myWindow.document.write(
+            '<iframe width="100%" height="100%" src="data:application/pdf;base64, ' + pdfContent + '"></iframe>'
+        );
 
      setLoad(false);
     } catch (error) {
@@ -176,7 +174,7 @@ const Mandats = () => {
           load?
           <Button className='bg-gray-300 text-blue-800 animate-bounce' size='sm'>Мандатыг боловсруулж байна ...</Button>
           :
-          <Button className='bg-blue-800 text-white' size='sm' onClick={generatePDF}>Generate PDFsa мандат</Button>
+          <Button className='bg-blue-800 text-white' size='sm' onClick={generatePDF}>Generate PDF мандат</Button>
       }
     </div>
   );

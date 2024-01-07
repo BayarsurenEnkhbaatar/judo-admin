@@ -1,13 +1,19 @@
 import { Button, Input } from '@nextui-org/react'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/auth'
 
 const Login = () => {
     const navigate = useNavigate();
-    const {login} = useContext(AuthContext);
+    const {login, currentUser} = useContext(AuthContext);
     const [data, setData] = useState({username:'', password:'', load:false});
+
+    useEffect(() => {
+        if(currentUser){
+            navigate('/dashboard');
+        }
+    }, []);
 
     const sub = async() =>{
         setData({...data, load:true});

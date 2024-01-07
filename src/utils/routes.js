@@ -19,6 +19,8 @@ import JinControl from '../pages/JinControl/index';
 import MeduulegDetail from '../pages/Dashboard/Pages/Comptation/meduuleg-detail';
 import ClubExpired from '../pages/Dashboard/Pages/Clubs/expired';
 import TeamsExpired from '../pages/Dashboard/Pages/Teams/expired';
+import CompEdit from '../pages/Dashboard/Pages/Comptation/edit';
+import Sugalaa from '../pages/Sugalaa';
 
 const ROUTES = () => {
 
@@ -28,6 +30,7 @@ const ROUTES = () => {
             <Route path='/comp-onoolt/:comp/:kg' element={<CompOnooltDetail/>}/>
             <Route path='/comp-play/:comp/:kg' element={<CompPlay/>}/>
             <Route path='/comp-jin/:comp/:kg' element={<JinControl/>}/>
+            <Route path='/comp-sugalaa/:comp/:kg' element={<Sugalaa/>}/>
             <Route path="/dashboard" element={<Home />}>
 
             <Route index element={<Dashboard/>}/>
@@ -36,6 +39,7 @@ const ROUTES = () => {
                 <Route path="teams-expired" element={<TeamsExpired/>}/>
                 <Route path="comp-list" element={<ComptationList/>}/>
                 <Route path="comp-list/:slug" element={<DrawComptation/>}/>
+                <Route path="comp-edit/:slug" element={<CompEdit/>}/>
                 <Route path="comp-list/:slug/:org" element={<MeduulegDetail/>}/>
                 <Route path="comp-calendar" element={<ComptationCalendar/>}/>
                 <Route path="club-list/requested" element={<ClubLists/>}/>

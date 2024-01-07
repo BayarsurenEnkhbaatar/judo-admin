@@ -34,6 +34,7 @@ const DrawCategoryCard = ({data}) => {
                                 <img className='h-5 hover:animate-pulse' src='../../icons/play.png'/>
                             </Link>
                             <Link className='mx-2' to={`/comp-jin/${data.comp_id}/${item.kg}`}>Жин үзэх</Link>
+                            <Link className='mx-2' to={`/comp-sugalaa/${data.comp_id}/${item.kg}`}>Сугалаа</Link>
                             <Link className='mx-2' to={`/comp-onoolt/${data.comp_id}/${item.kg}`}>Оноолт</Link>
                         </div>
                     </div>

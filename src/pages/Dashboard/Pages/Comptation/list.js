@@ -118,7 +118,8 @@ const ComptationList = () => {
                                 
                                 <td className="py-2 px-6 text-sm font-medium text-right whitespace-nowrap">
                                   <label className='flex items-center justify-end gap-4'>
-                                    <Link className='text-xs font-bold uppercase' to={`/dashboard/comp-list/${item.id}`}>Дэлгэрэнгүй</Link>
+                                    <Link className='text-[9px] font-bold uppercase' to={`/dashboard/comp-edit/${item.id}`}>Засварлах</Link>
+                                    <Link className='text-[9px] font-bold uppercase' to={`/dashboard/comp-list/${item.id}`}>Дэлгэрэнгүй</Link>
                                     {/* <ReqModal data={item} callback={callback}/> */}
                                     {/* <CompDetailModal data={item}/> */}
                                   </label>

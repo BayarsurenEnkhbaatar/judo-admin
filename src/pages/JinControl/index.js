@@ -5,6 +5,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import { GET } from '../../utils/requests';
 import { athlete_to_comptation_uri } from '../../utils/url';
 import { STATUS } from '../../utils/types';
+import Download_pdf from './Components/download_pdf';
 
 const JinControl = () => {
   const navigate = useNavigate();
@@ -41,6 +42,9 @@ const JinControl = () => {
             <h1 className='text-lg font-bold text-center uppercase'>Жингийн контрол хийх</h1>
             {/* <h1 className='text-4xl font-bold text-center'>Боржин цом 2023</h1> */}
             <h1 className='text-4xl font-bold text-center'>{params.kg} кг</h1>
+            <div className='flex justify-end mr-2'>
+            <Download_pdf/>
+            </div>
           </div>
           <div className='p-4'>
             <Input className='p-2' size='large' value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Тамирчин хайх'/>

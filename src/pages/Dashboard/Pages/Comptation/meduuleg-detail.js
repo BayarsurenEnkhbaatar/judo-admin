@@ -44,7 +44,7 @@ const MeduulegDetail = () => {
             data.male.map((it, index) => {
               return(
                 <div key={index}>
-                  <h1 className='font-bold text-sm uppercase mb-2'>эрэгтэй жин</h1>
+                  <h1 className='font-bold text-sm uppercase mb-1 mt-4'>{it.category.name.slice(0, 4)} эрэгтэй жин</h1>
                   <div className='mt-4 grid md:grid-cols-5 xs:grid-cols-2 sm:grid-cols-4 gap-2'>
                     {
                       it.category.jin.map((item, idx) => {
@@ -64,7 +64,7 @@ const MeduulegDetail = () => {
             data.female.map((it, index) => {
               return(
                 <div key={index}>
-                  <h1 className='font-bold text-sm uppercase mb-2'>эмэгтэй жин</h1>
+                  <h1 className='font-bold text-sm uppercase mb-2'>{it.category.name.slice(0, 4)} эмэгтэй жин</h1>
                   <div className='mt-4 grid md:grid-cols-5 xs:grid-cols-4 gap-2'>
                     {
                       it.category.jin.map((item, idx) => {

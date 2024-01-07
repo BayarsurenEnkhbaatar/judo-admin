@@ -1,12 +1,14 @@
-import React, { useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import {Accordion, AccordionItem, Button} from '@nextui-org/react'
 import {RxDashboard} from 'react-icons/rx'
 import {FiArrowLeft, FiLogOut} from 'react-icons/fi'
 import {BsPeopleFill} from 'react-icons/bs'
 import { Link, useLocation } from 'react-router-dom'
 import {HiHome} from 'react-icons/hi'
+import { AuthContext } from '../../context/auth'
 
 const Sidebar = () => {
+  const {logout} = useContext(AuthContext);
   const location = useLocation();
   const pathname = location.pathname;
 
@@ -167,10 +169,10 @@ const admins = useMemo(() => [
 
         </div>
         <div className='mx-4 mt-40 bottom-10 w-52'>
-          <Link to="/" className='flex items-center gap-4 bg-gray-200 rounded-lg p-2 pl-4 cursor-pointer hover:bg-gray-300'>
+          <Button onClick={logout} className='flex items-center justify-start gap-4 bg-gray-200 rounded-lg p-2 pl-4 cursor-pointer hover:bg-gray-300 w-full'>
             <FiLogOut size={20}/>
             <h1 className='text-sm'>Гарах</h1>
-          </Link>
+          </Button>
         </div>
       </div>
     </div>

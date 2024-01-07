@@ -10,10 +10,11 @@ import {toast} from 'react-toastify'
 
 export default function CompAddModal({callback}) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const [load, setLoad] = useState(false);
   const [step, setStep] = useState(0);
   const [category, setCategory] = useState([]);
   const [data, setData] = useState({name:"", desc:"", province:"", sum:"", start_date:"", end_date:"",
-  orgenizer:"", cover_img:"", categorys:[], mandat_price:"", more_address:"", type:"", guide_doc:""});
+  orgenizer:"", cover_img:"", categorys:[], mandat_price:"", more_address:"", type:"", guide_doc:"", deadline:"", orgenizer_logo:"" });
   const [imgload, setImgload] = useState(false);
   const [docload, setDocload] = useState(false);
   const steps = [{title: 'Ерөнхий мэдээлэл',content: 'First-content',},{title: 'Зохион байгуулагч',content: 'Second-content',},{title: 'Ангилал, жингийн мэдээлэл',content: 'Last-content',},];
@@ -59,7 +60,10 @@ export default function CompAddModal({callback}) {
   }
 
   const Submit = async () => {
-    if(data.name === "", data.desc === "" || data.province === ""||data.sum === ""|| data.start_date === ""|| data.end_date === ""|| data.orgenizer === ""|| data.categorys === [] || data.mandat_price === ""){
+    setLoad(true);
+    if(data.name === "", data.desc === "" || data.province === ""||data.sum === ""|| data.start_date === ""|| 
+    data.end_date === ""|| data.orgenizer === ""|| data.categorys === [] || data.mandat_price === "" || data.deadline === ""){
+      setLoad(false);
      return toast.warning("Та мэдээллээ бүрэн оруулна уу !")
     }
     const res = await POST({uri:comp_uri, data:data});
@@ -67,7 +71,9 @@ export default function CompAddModal({callback}) {
       toast.success("Тэмцээнийг амжилттай нэмлээ");
       onOpenChange(false);
       handleCall();
+      setLoad(false);
     }
+    setLoad(false);
   }
 
   const options = [
@@ -91,6 +97,19 @@ export default function CompAddModal({callback}) {
       setImgload(false);
     } catch (error) {
       setImgload(false);
+      console.error('Error uploading file', error);
+    }
+  };
+
+  const handleOrgenizer_Logo = async (e) => {
+    setDocload(true);
+    const file = e.target.files[0];
+    try {
+      const res = await IMAGE_UPLOAD({file:file})
+      setData({...data, orgenizer_logo:res});
+      setDocload(false);
+    } catch (error) {
+      setDocload(false);
       console.error('Error uploading file', error);
     }
   };
@@ -174,6 +193,7 @@ export default function CompAddModal({callback}) {
                           </SelectItem>
                         ))}
                       </Select>
+
                       <h1 className="text-sm font-bold mt-4">Тэмцээний ковер зураг</h1>
                       <input className="mt-1" type='file' onChange={handleUpload}/>
 
@@ -187,6 +207,19 @@ export default function CompAddModal({callback}) {
 
                       <h1 className="text-sm mt-4 font-bold">Мандатын төлбөр</h1>
                       <Input type='number' onChange={(e) => setData({...data, mandat_price:e.target.value})} value={data.mandat_price} className="mt-1" placeholder="Мандатын төлбөр"/>
+                      
+                      <h1 className="text-sm font-bold mt-4">Зохион байгуулагч лого</h1>
+                      <input className="mt-1" type='file' onChange={handleOrgenizer_Logo}/>
+
+                      {
+                        docload &&
+                        <div className="mt-1 flex items-center gap-2">
+                          <h1 className="text-sm">Зургийг хадгалж байна.</h1>
+                          <Spinner size='sm'/>
+                        </div>
+                      }
+
+
                     </div>
                   }
 
@@ -244,6 +277,9 @@ export default function CompAddModal({callback}) {
                         </div>
                       }
 
+                      <h1 className="text-sm mt-4 font-bold">Мэдүүлэг өгөх сүүлийн хугацаа</h1>
+                      <Input type='datetime-local' onChange={(e) => setData({...data, deadline:e.target.value})} value={data.deadline} className="mt-1"/>
+
                     </div>
                   }
 
@@ -255,9 +291,19 @@ export default function CompAddModal({callback}) {
                 </Button>
                   {
                     step === 2?
-                    <Button color="primary" onPress={Submit}>
-                      Оруулах
-                    </Button>
+                    <>
+                    {
+                      load?
+                      <Button color="white">
+                        <Spinner/> Оруулж байна...
+                        
+                      </Button>
+                      :
+                      <Button color="primary" onPress={Submit}>
+                        Оруулах
+                      </Button>
+                    }
+                    </>
                     :
                     <Button color="primary" onPress={next}>
                       Цааш
